@@ -1,0 +1,29 @@
+<div class="search-container">
+  <form class="search-form">
+    <span class="logo" routerLink="/">OMDB</span>
+    <input [(ngModel)]="search" class="search-input" name="search"
+
+      placeholder="Search 500,000+ movies"
+    />
+    <button (click)="getMovies(search)" class="search-button">Search</button>
+  </form>
+</div>
+
+
+<div class="container">
+  <div class="row p-5">
+    <div class="col p-4" *ngFor="let movie of movies">
+      <div class="card">
+        <img src="{{movie.Poster}}" class="card-img-top" alt="..." />
+        <div class="card-body">
+          <h5 class="card-title">{{movie.Title}}</h5>
+          <p class="card-text">
+            {{movie.Year}}
+          </p>
+          <a href="#!" class="btn btn-primary">Button</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
