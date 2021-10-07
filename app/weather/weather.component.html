@@ -1,0 +1,55 @@
+<div class="search-container">
+  <form class="search-form">
+    <span class="logo" routerLink="/">WeatherApp</span>
+    <input
+      class="search-input"
+      [(ngModel)]="location"
+      name="search"
+      placeholder="Search Your Location"
+    />
+    <button (click)="getWeatherByCity(location)" class="search-button">
+      Search
+    </button>
+  </form>
+</div>
+
+<br /><br /><br /><br />
+<div class="container" style="margin-left: 30px">
+  <h1>Weather Today in {{ location | titlecase }}</h1>
+  <div>
+    <img
+      style="width: 80px; margin-top: 10px"
+      src="../../assets/icons/{{ weather.currentConditions.icon }}.png"
+    />
+  </div>
+  <h3>{{ weather.currentConditions.conditions }}</h3>
+  <h4>
+    Temperature: {{ weather.currentConditions.temp | number: "1.0-0" }} Celsius
+  </h4>
+  <h5>
+    Feels Like: {{ weather.currentConditions.feelslike | number: "1.0-0" }}
+  </h5>
+  <h5>
+    Humidity: {{ weather.currentConditions.humidity | number: "1.0-0" }} %
+  </h5>
+  <h6>
+    Sunrise: {{ weather.currentConditions.sunrise }} Sunset:
+    {{ weather.currentConditions.sunset }}
+  </h6>
+</div>
+
+<section>
+  <div>
+    <h2>15 Days Forecast in {{ weather.address | titlecase }}</h2>
+    <ul *ngFor="let day of weather.days" class="check-list">
+      <li>
+        {{ day.datetime }}
+        <img
+          style="width: 30px; margin-top: -800px"
+          src="../../assets/icons/{{ day.icon }}.png"
+        />{{ day.tempmax | number: "1.0-0" }} /
+        {{ day.tempmin | number: "1.0-0" }} {{ day.conditions }}
+      </li>
+    </ul>
+  </div>
+</section>
